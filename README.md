@@ -5,7 +5,7 @@
 [![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/)
 [![uv](https://img.shields.io/badge/deps-uv-orange)](https://docs.astral.sh/uv/)
 
-A reusable, agent-agnostic skill for [Claude Code](https://claude.com/claude-code), Codex, Cursor, Copilot, Gemini CLI, Windsurf and any `AGENTS.md`-aware agent. It interviews you and
+A reusable, **agent-agnostic** skill that works with any AI coding agent: Codex, Cursor, GitHub Copilot, Gemini CLI, Windsurf, Claude Code, and any tool that reads `AGENTS.md`. It interviews you and
 scaffolds a clean, production-minded **FastAPI** backend with **Python 3.12** and **uv**,
 then verifies it by running lint and tests.
 
@@ -21,7 +21,7 @@ then verifies it by running lint and tests.
 
 ## Requirements
 
-- An AI coding agent (Claude Code, Codex, Cursor, Copilot, Gemini CLI, Windsurf, ...)
+- Any AI coding agent that can read files and run shell commands
 - [uv](https://docs.astral.sh/uv/getting-started/installation/)
 - Docker (only if you choose Docker Compose)
 
@@ -30,34 +30,34 @@ then verifies it by running lint and tests.
 ```bash
 git clone https://github.com/Matt1tech/fastapi-project-init.git
 cd fastapi-project-init
-./install.sh --agent claude        # user-wide, installs to ~/.claude/skills
+./install.sh                       # generic: .agents/skills + AGENTS.md in the current project
 ```
 
-Pick your agent with `--agent`. Add `--project` to install into the current project instead of your home directory.
+Run the installer from the project where you want the skill. Pick a specific agent with `--agent`. Add `--project` to install into the current project instead of your home directory.
 
 | Agent | Command | Where it installs | How you invoke it |
 |---|---|---|---|
+| Generic (default) | `./install.sh` | `.agents/skills/` + `AGENTS.md` | ask: "create a new FastAPI project" |
 | Claude Code | `./install.sh --agent claude` | `~/.claude/skills/` | `/fastapi-project-generator` |
 | OpenAI Codex | `./install.sh --agent codex` | `~/.codex/skills/` | ask: "create a new FastAPI project" |
 | Cursor | `./install.sh --agent cursor` | `.agents/skills/` + `.cursor/rules/` | `@fastapi-project-generator` or ask |
 | GitHub Copilot | `./install.sh --agent copilot` | `.agents/skills/` + `.github/copilot-instructions.md` | ask in chat |
 | Gemini CLI | `./install.sh --agent gemini` | `.agents/skills/` + `GEMINI.md` | ask |
 | Windsurf | `./install.sh --agent windsurf` | `.agents/skills/` + `.windsurf/rules/` | ask |
-| Any `AGENTS.md` agent | `./install.sh --agent agents` | `.agents/skills/` + `AGENTS.md` | ask |
 | Everything | `./install.sh --agent all` | all of the above (project-level) | |
 
-Cursor, Copilot, Gemini and Windsurf are project-level only; run the installer from the
+Cursor, Copilot, Gemini and Windsurf are project-level only (Claude Code and Codex also support a user-wide install); run the installer from the
 project where you want the skill. Re-running is safe: existing instruction files are
 appended to once, never duplicated or overwritten. Restart your agent after installing.
 
 The skill is plain Markdown. Any other agent can use it by reading
-`skills/fastapi-project-generator/SKILL.md`. Agents without a structured question tool
+`skills/fastapi-project-generator/SKILL.md`, or just tell it: "read `.agents/skills/fastapi-project-generator/SKILL.md` and follow it". Agents without a structured question tool
 simply ask the same questions in chat.
 
 ## Usage
 
 Ask in plain language, for example: *"Create a new FastAPI project called shop-api with Postgres and Docker."*
-In Claude Code you can also run `/fastapi-project-generator`. The agent asks only what you haven't already told it.
+Agents with skill slash-commands (for example Claude Code) can also run `/fastapi-project-generator`. The agent asks only what you haven't already told it.
 
 ### Questions asked
 

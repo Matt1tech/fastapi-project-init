@@ -1,6 +1,6 @@
 ---
 name: fastapi-project-generator
-description: Interactively scaffold a production-minded FastAPI backend using Python 3.12, uv, and a chosen architecture (modular layered, clean, hexagonal, minimal, microservices), with optional PostgreSQL, Redis, Qdrant, JWT auth, Docker Compose, and AI modules (LangChain, LangGraph, RAG, MCP). Use when the user wants to start a new FastAPI project, scaffold a backend, or says "/fastapi-project-generator".
+description: Interactively scaffold a production-minded FastAPI backend using Python 3.12, uv, and a chosen architecture (modular layered, clean, hexagonal, minimal, microservices), with optional PostgreSQL, Redis, Qdrant, JWT auth, Docker Compose, and AI modules (LangChain, LangGraph, RAG, MCP). Use when the user wants to start a new FastAPI project, scaffold a backend, or invokes this skill by name.
 ---
 
 # FastAPI Project Generator
@@ -10,8 +10,8 @@ sensible defaults, scaffold, then verify with real commands.
 
 ## Step 1 - Interview
 
-Use your agent's structured question tool if it has one (e.g. `AskUserQuestion` in
-Claude Code). If not, ask the same questions in chat as a short numbered list with
+Use your agent's structured question tool if it has one (any ask-the-user or
+multiple-choice prompt tool). If not, ask the same questions in chat as a short numbered list with
 lettered options and the recommended option marked, then wait for the reply.
 
 Ask in at most two rounds. Skip any question the user already

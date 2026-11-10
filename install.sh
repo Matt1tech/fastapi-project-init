@@ -2,19 +2,19 @@
 # Install the fastapi-project-generator skill for AI coding agents.
 #
 # Usage:
-#   ./install.sh [--agent claude|codex|cursor|copilot|gemini|windsurf|agents|all] [--project]
+#   ./install.sh [--agent agents|claude|codex|cursor|copilot|gemini|windsurf|all] [--project]
 #
-#   --agent    target agent (default: claude)
+#   --agent    target agent (default: agents, the generic AGENTS.md standard)
 #   --project  install into the current directory instead of your home directory
 #
-# User-wide install is supported for: claude, codex, agents.
+# User-wide install is supported for: claude, codex.
 # cursor, copilot, gemini and windsurf are project-level only.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILL="$ROOT/skills/fastapi-project-generator"
 NAME="fastapi-project-generator"
-AGENT="claude"
+AGENT="agents"
 PROJECT=0
 
 while [[ $# -gt 0 ]]; do
@@ -83,7 +83,7 @@ install_one() {
 
 if [[ "$AGENT" == "all" ]]; then
   PROJECT=1
-  for a in claude codex agents cursor copilot gemini windsurf; do install_one "$a"; done
+  for a in agents claude codex cursor copilot gemini windsurf; do install_one "$a"; done
 else
   install_one "$AGENT"
 fi
