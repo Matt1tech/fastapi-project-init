@@ -1,0 +1,7 @@
+---
+description: Scaffold a new FastAPI backend (Python 3.12, uv, chosen architecture, optional Postgres/Redis/Qdrant/JWT/Docker/AI). Use when the user wants to create or scaffold a FastAPI project.
+alwaysApply: false
+---
+
+Follow @.agents/skills/fastapi-project-generator/SKILL.md and the files in its
+`references/` folder. Interview the user first, scaffold, then verify with real commands.

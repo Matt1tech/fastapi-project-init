@@ -8,13 +8,17 @@ description: Interactively scaffold a production-minded FastAPI backend using Py
 Generate a clean, verified FastAPI project. Interview the user briefly, recommend
 sensible defaults, scaffold, then verify with real commands.
 
-## Step 1 - Interview (use AskUserQuestion)
+## Step 1 - Interview
 
-Ask in at most two rounds of AskUserQuestion. Skip any question the user already
+Use your agent's structured question tool if it has one (e.g. `AskUserQuestion` in
+Claude Code). If not, ask the same questions in chat as a short numbered list with
+lettered options and the recommended option marked, then wait for the reply.
+
+Ask in at most two rounds. Skip any question the user already
 answered in their message. Always mark the recommended option first with
 "(Recommended)". Never ask about things that have a safe default.
 
-**Round 1 - essentials** (one AskUserQuestion call, up to 4 questions):
+**Round 1 - essentials** (one batch, up to 4 questions):
 
 1. **Project name** - free text (use "Other"). Offer a short suggestion based on the
    directory name. Normalize to kebab-case for the folder and snake_case for Python names.
@@ -26,7 +30,7 @@ answered in their message. Always mark the recommended option first with
 4. **Services** (multiSelect) - PostgreSQL + SQLAlchemy + Alembic, JWT auth,
    Redis, Docker Compose. Recommend PostgreSQL and Docker Compose.
 
-**Round 2 - optional extras** (only ask if relevant; one call):
+**Round 2 - optional extras** (only ask if relevant; one batch):
 
 1. **Vector DB** (multiSelect, only if the user wants AI/RAG or Qdrant): Qdrant,
    PostgreSQL pgvector, None.
